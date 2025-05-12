@@ -4,8 +4,9 @@ public class UserLoginResponse {
     private final Long id;
     private String token;
 
-    public UserLoginResponse(long id) {
+    public UserLoginResponse(long id, String token) {
         this.id = id;
+        this.token = token;
     }
 
     public void setToken(String token) {this.token = token;}
