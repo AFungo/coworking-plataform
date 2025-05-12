@@ -26,3 +26,11 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+allprojects {
+    group = 'com.example.coworking'
+    version = '1.0.0'
+    repositories {
+        mavenCentral()
+    }
+}
