@@ -1,3 +1,5 @@
 rootProject.name = 'coworking-plataform'
 
-include 'user-microservice'
+include 'auth-lib'
+include 'user-service'
+include 'booking-service'

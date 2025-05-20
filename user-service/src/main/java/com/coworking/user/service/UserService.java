@@ -1,13 +1,13 @@
 package com.coworking.user.service;
 
-import com.coworking.user.auth.JwtService;
+import com.coworking.auth.AuthenticatedUser;
+import com.coworking.auth.JwtService;
 import com.coworking.user.dto.UserLoginRequest;
 import com.coworking.user.dto.UserLoginResponse;
 import com.coworking.user.dto.UserRegistrationRequest;
 import com.coworking.user.dto.UserRegistrationResponse;
 import com.coworking.user.model.User;
 import com.coworking.user.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,12 +18,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private JwtService jwtService;
+    private final JwtService jwtService;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = new BCryptPasswordEncoder();
+        this.jwtService = new JwtService();
     }
 
     public UserRegistrationResponse register(UserRegistrationRequest userRegistrationRequest) {
@@ -56,7 +56,7 @@ public class UserService {
             throw new IllegalArgumentException("password");
         }
 
-        String token = jwtService.generateToken(user.getName());
+        String token = jwtService.generateToken(new AuthenticatedUser(user.getName()));
         return new UserLoginResponse(user.getId(), token);
     }
 }
