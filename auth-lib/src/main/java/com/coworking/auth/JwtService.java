@@ -17,8 +17,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    @Value("${jwt.secret}")
-    private String secretKey;
+    private final String secretKey = "supersecretkeysupersecretkeysupersecretkeysupersecretkeysupersecretkeysupersecretkey";
 
     public String generateToken(AuthenticatedUser user) {
         Map<String, Object> claims = new HashMap<>();
