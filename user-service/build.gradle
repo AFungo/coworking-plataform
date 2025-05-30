@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-	implementation project(':auth-lib')
+	implementation 'com.coworking:auth-lib:1.0'
 	
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
