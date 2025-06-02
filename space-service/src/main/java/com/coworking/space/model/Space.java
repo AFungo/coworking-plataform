@@ -12,7 +12,11 @@ public class Space {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private int size;
+
+    @Column(unique = true)
+    private String name;
+
+    private String description;
 
 }
