@@ -5,6 +5,7 @@ import com.coworking.space.dto.CreateSpaceResponse;
 import com.coworking.space.model.Space;
 import com.coworking.space.repository.SpaceRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,5 +34,11 @@ public class SpaceService {
         space = spaceRepository.save(space);
 
         return new CreateSpaceResponse(space.getId());
+    }
+
+    public ResponseEntity<Space> getSpace(long id) {
+        return spaceRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
